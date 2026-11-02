@@ -1,0 +1,83 @@
+{
+  "name": "@invoist/sdk",
+  "version": "1.0.1",
+  "description": "Official TypeScript and JavaScript client for the Invoist API: read invoices and bills into structured data, and verify Invoist webhooks.",
+  "keywords": [
+    "invoist",
+    "invoice",
+    "bills",
+    "ocr",
+    "extraction",
+    "api",
+    "sdk",
+    "webhooks"
+  ],
+  "homepage": "https://invoi.st/docs",
+  "bugs": {
+    "url": "https://github.com/invoisthq/invoist-node/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/invoisthq/invoist-node.git"
+  },
+  "license": "MIT",
+  "author": "Invoist",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/cjs/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    },
+    "./webhooks": {
+      "import": {
+        "types": "./dist/esm/webhooks.d.ts",
+        "default": "./dist/esm/webhooks.js"
+      },
+      "require": {
+        "types": "./dist/cjs/webhooks.d.ts",
+        "default": "./dist/cjs/webhooks.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "SECURITY.md"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "generate": "npm ci --prefix codegen --no-audit --no-fund --silent && node codegen/generate.mjs",
+    "lint": "biome check .",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "build": "node scripts/build.mjs",
+    "test": "npm run build && node --test --test-reporter=spec \"test/**/*.test.ts\" && node scripts/check-package.mjs",
+    "check": "npm run lint && npm run typecheck && npm test",
+    "prepublishOnly": "npm run check"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "0.18.5",
+    "@biomejs/biome": "2.6.4",
+    "@types/node": "26.6.6",
+    "publint": "0.3.25",
+    "typescript": "7.0.2"
+  }
+}

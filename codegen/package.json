@@ -1,0 +1,10 @@
+{
+  "name": "invoist-sdk-codegen",
+  "private": true,
+  "description": "Generates src/generated/schema.ts from the OpenAPI spec. Kept apart from the SDK because openapi-typescript needs the TypeScript 5 compiler API, while the SDK builds with TypeScript 7.",
+  "type": "module",
+  "devDependencies": {
+    "openapi-typescript": "7.13.0",
+    "typescript": "5.9.3"
+  }
+}

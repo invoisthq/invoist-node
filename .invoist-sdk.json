@@ -1,0 +1,23 @@
+{
+  "name": "TypeScript / JavaScript",
+  "mirror": "invoisthq/invoist-node",
+  "registry": "npm",
+  "package": "@invoist/sdk",
+  "tool": "node",
+  "docker": "node:26",
+  "commands": {
+    "setup": "npm ci --no-audit --no-fund && npm ci --prefix codegen --no-audit --no-fund",
+    "generate": "npm run generate",
+    "lint": "npm run lint && npm run typecheck",
+    "test": "npm test",
+    "build": "npm run build",
+    "publish_dry_run": "npm publish --dry-run --access public",
+    "publish": "npm publish --access public"
+  },
+  "generated": ["src/generated"],
+  "version_files": [
+    { "path": "package.json", "pattern": "^  \"version\": \"([^\"]+)\"" },
+    { "path": "src/version.ts", "pattern": "export const VERSION = \"([^\"]+)\"" }
+  ],
+  "tag_prefix": "v"
+}
